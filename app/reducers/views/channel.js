@@ -322,6 +322,10 @@ function lastChannelViewTime(state = {}, action) {
 function keepChannelIdAsUnread(state = null, action) {
     switch (action.type) {
     case ChannelTypes.SELECT_CHANNEL: {
+        if (!action.extra) {
+            return state;
+        }
+
         const {channel, member} = action.extra;
 
         if (!member || !channel) {
